@@ -6,15 +6,16 @@ import { FiClock, FiUsers, FiCalendar, FiAlertCircle } from 'react-icons/fi';
 
 interface LayoutProps {
   children: React.ReactNode;
+  title?: string;
 }
 
-export default function Layout({ children }: LayoutProps) {
+export default function Layout({ children, title }: LayoutProps) {
   const router = useRouter(); // Hook para obter a rota atual
 
   return (
     <LayoutWrapper>
       <Sidebar>
-        <IconBox>RH</IconBox>
+        <IconBox></IconBox>
         <SidebarItem className={router.pathname === '/batidas' ? 'active' : ''}>
           <Link href="/batidas">   
               <FiClock />
@@ -43,7 +44,7 @@ export default function Layout({ children }: LayoutProps) {
       </Sidebar>
       <StageWrapper>
         <Header>
-          <HeaderTitle>Dashboard</HeaderTitle>
+          <HeaderTitle>{title}</HeaderTitle>
         </Header>
         <Content>{children}</Content>
       </StageWrapper>

@@ -2,14 +2,16 @@ import React from 'react';
 import { ButtonWrapper, StyledButton, ButtonLabel } from './styles';
 
 interface ButtonProps {
-    children: React.ReactNode; // Children to render inside the button
+    children: React.ReactNode; 
+    color?: string; 
+
 }
   
 
-export default function Button({ children }: ButtonProps) {
+export default function Button({ children,color,  ...props }: ButtonProps) {
     return (
     <ButtonWrapper>
-      <StyledButton>
+      <StyledButton {...props} style={{ backgroundColor: color }}>
         <ButtonLabel>{children}</ButtonLabel>
       </StyledButton>
     </ButtonWrapper>

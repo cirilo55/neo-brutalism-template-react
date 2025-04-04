@@ -96,6 +96,13 @@ const globalStyles = globalCss({
   '.p-0': {
     padding: '0 !important',
   },
+  '.p-4':{
+    padding: '2rem',
+  },
+  '.py-4': {
+    paddingLeft: '1rem',
+    paddingRight: '1rem',
+  },
   '.mb-1': {
     marginBottom: '0.25rem',
   },
@@ -111,6 +118,13 @@ const globalStyles = globalCss({
   '.f-small': {
     fontSize: 'small',
   },
-});
+  '.px-8': {
+    paddingRight: '4rem',
+    paddingLeft: '4rem',
+  },
+  '.p-2': {
+    padding: '1rem',
+  }
+}); 
 
 export default globalStyles;

@@ -1,51 +1,117 @@
-import styled from 'styled-components';
+import { createStitches } from '@stitches/react';
 
-export const LayoutWrapper = styled.div`
-  display: flex;
-  height: 100vh;
-`;
+const { styled } = createStitches();
 
-export const Sidebar = styled.div`
-  width: 250px;
-  background-color: black;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  box-shadow: 4px 0 0 #c585e0; /* Efeito de borda brutalista */
-`;
+export const TableWrapper = styled('div', {
+  width: '100%',
+  border: '2px solid black',
+  borderRadius: '1px',
+  overflow: 'hidden',
+  boxShadow: '2px 2px 0px black',
+  backgroundColor: '#fff',
+});
 
-export const SidebarItem = styled.div`
-  margin-bottom: 20px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out;
+export const TableSection = styled('section', {
+  width: '100%',
+  overflowY: 'auto', 
+  height: 'calc(70vh - 0.2rem)',
+  
+  '&::-webkit-scrollbar': {
+    width: '12px',
+  },
+  '&::-webkit-scrollbar-track': {
+    backgroundColor: '#f3f2f2',
+    border: '2px solid black',
+    borderRadius: '2px',
 
-  &:hover {
-    transform: translateX(4px); /* Leve movimento ao passar o mouse */
-  }
-`;
+  },
+  '&::-webkit-scrollbar-thumb': {
+    backgroundColor: '#c585e0',
+    border: '2px solid black',
+    borderRadius: '2px',
+  },
+  '&::-webkit-scrollbar-thumb:hover': {
+    backgroundColor: '#a45ccf',
+  },
+});
 
-export const Header = styled.div`
-  height: 60px;
-  background-color: #f5f5f5;
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
-  box-shadow: 0 4px 0 #c585e0; /* Efeito de borda brutalista */
-`;
+export const TableHeader = styled('div', {
+  color: '#fff',
+  fontWeight: 'bold',
+  textTransform: 'uppercase',
+  padding: "0.25rem 0.1rem",
+  borderBottom: '2px solid black',
+  height: 'calc(10vh- 0.2rem)'
 
-export const HeaderTitle = styled.h1`
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #333;
-`;
+});
 
-export const Content = styled.div`
-  padding: 20px;
-  background-color: #fff;
-  height: calc(100vh - 60px); /* Altura total menos o cabeçalho */
-  overflow-y: auto;
-  box-shadow: 4px 4px 0 #c585e0; /* Efeito de borda brutalista */
-`;
+export const TableBody = styled('div', {
+  padding: '.2rem',
+  height: 'calc(60vh - 0.2rem)',
+});
+
+export const TableFooter = styled('div', {
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding: '1rem',
+});
+
+export const TableRow = styled('div', {
+  display: 'grid',
+  // gridTemplateColumns: '4fr 1fr 1fr 1fr 1fr',
+  alignItems: 'center',
+  borderBottom: '2px solid #e0e0e0',
+  height: "6vh",
+  alignItems: 'center',
+  '&:last-child': {
+    borderBottom: 'none',
+  },
+
+  '&:hover': {
+    // backgroundColor: '#d596ff', 
+  },
+});
+
+export const TableCell = styled('div', {
+  padding: '0.1rem 0.25rem',
+  fontSize: '0.75rem',
+  color: '#333',
+  display: "flex",
+  
+  '&[as="th"]': {
+    fontWeight: 'bold',
+    textAlign: 'left',
+  },
+});
+
+export const ButtonOutlined = styled('button', {
+  backgroundColor: 'transparent',
+  color: '#333',
+  border: '2px solid black',
+  borderRadius: '4px',
+  padding: '0.5rem 1rem',
+  fontSize: '0.875rem',
+  fontWeight: 'bold',
+  cursor: 'pointer',
+  transition: 'background-color 0.2s, color 0.2s',
+
+  '&:hover': {
+    boxShadow: '#f3f2f2',
+    color: '#000',
+
+  },
+
+  '&:active': {
+    boxShadow: '1px 1px 0px black',
+    transform: 'translate(1px, 1px)',
+  },
+
+  '&:focus': {
+    outline: 'none',
+  },
+});
+
+export const ComponentWrapper = styled('div', {
+  height: '100%',
+});

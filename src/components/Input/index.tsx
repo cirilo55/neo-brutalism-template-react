@@ -7,9 +7,10 @@ interface InputProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
+  props?: React.InputHTMLAttributes<HTMLInputElement>;
 }
 
-export default function Input({ label, type = 'text', value, onChange, placeholder }: InputProps) {
+export default function Input({ label, type = 'text', value, onChange, placeholder, ...props}: InputProps) {
   return (
     <InputWrapper>
       <InputLabel>{label}</InputLabel>
@@ -18,6 +19,7 @@ export default function Input({ label, type = 'text', value, onChange, placehold
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        {...props}
       />
     </InputWrapper>
   );
