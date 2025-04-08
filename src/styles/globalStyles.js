@@ -13,7 +13,8 @@ const globalStyles = globalCss({
     '--cui-dark': '#343a40',
   },
   '*': {
-    fontFamily: "'Poppins', sans-serif",
+    fontFamily: "'Comic Neue', sans-serif",
+    // fontFamily: "'Poppins', sans-serif",
     margin: 0,
     padding: 0,
     boxSizing: 'border-box',
@@ -25,10 +26,14 @@ const globalStyles = globalCss({
     fontFamily: 'Arial, sans-serif',
     backgroundColor: '#f3f2f2',
   },
+  'h-100':{
+    height: '100%',
+  },
   '.d-flex-center': {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    
   },
   '.d-flex-a-end': {
     display: 'flex',

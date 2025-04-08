@@ -10,7 +10,7 @@ interface Column {
 
 interface TableProps {
   columns: Column[];
-  data: Array<{ [key: string]: string | number | boolean | null }>;
+  data: Record<string, string | number | boolean | null>[]; // Array of objects with string keys and values of various types
 }
 
 export default function Table({ columns, data }: TableProps) {
