@@ -35,9 +35,9 @@ export default function Funcionarios() {
       const filtered = data
         .filter((funcionario: Funcionario) => {
           if (showOnlyActive) {
-            return !funcionario.Demissao; // Exibe apenas os funcionários sem data de demissão
+            return !funcionario.Demissao; 
           }
-          return true; // Exibe todos os funcionários
+          return true; 
         })
         .map((funcionario: Funcionario) => ({
           Nome: funcionario.Nome,

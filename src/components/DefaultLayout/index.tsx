@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { LayoutWrapper, Sidebar, Header, Content, SidebarItem, HeaderTitle, IconBox, StageWrapper } from './styles';
-import { FiClock, FiUsers, FiCalendar, FiAlertCircle } from 'react-icons/fi';
+import { FiClock, FiUsers, FiCalendar, FiAlertCircle, FiLogOut } from 'react-icons/fi';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -11,6 +11,25 @@ interface LayoutProps {
 
 export default function Layout({ children, title }: LayoutProps) {
   const router = useRouter(); // Hook para obter a rota atual
+
+  useEffect(() => {
+    const token = document.cookie
+      .split('; ')
+      .find((row) => row.startsWith('authToken='))
+      ?.split('=')[1];
+
+    if (!token) {
+      router.push('/login');
+    }
+  }, [router]);
+
+  const handleLogout = () => {
+    // Remove o token dos cookies
+    document.cookie = 'authToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+
+    // Redireciona para a página de login
+    router.push('/login');
+  };
 
   return (
     <LayoutWrapper>
@@ -41,6 +60,12 @@ export default function Layout({ children, title }: LayoutProps) {
             
           </Link>
         </SidebarItem>
+
+        <SidebarItem onClick={handleLogout} style={{ cursor: 'pointer', marginTop: 'auto' }}>
+          <FiLogOut />
+          <span>Logout</span>
+        </SidebarItem>
+
       </Sidebar>
       <StageWrapper>
         <Header>

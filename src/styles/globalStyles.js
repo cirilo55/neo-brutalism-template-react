@@ -1,6 +1,13 @@
 import { createStitches } from '@stitches/react';
 
-const { globalCss } = createStitches();
+
+export const { globalCss, styled } = createStitches({
+  theme: {
+    fonts: {
+      body: 'Roboto, sans-serif',
+    },
+  },
+});
 
 const globalStyles = globalCss({
   ':root': {
@@ -12,9 +19,22 @@ const globalStyles = globalCss({
     '--cui-light': '#f8f9fa',
     '--cui-dark': '#343a40',
   },
+  '@font-face': [
+    {
+      fontFamily: 'Roboto',
+      src: 'url(/fonts/Roboto-Regular.woff2) format("woff2")',
+      fontWeight: '400',
+      fontStyle: 'normal',
+    },
+    {
+      fontFamily: 'Roboto',
+      src: 'url(/fonts/Roboto-Bold.woff2) format("woff2")',
+      fontWeight: '700',
+      fontStyle: 'normal',
+    },
+  ],
   '*': {
-    fontFamily: "'Comic Neue', sans-serif",
-    // fontFamily: "'Poppins', sans-serif",
+    fontFamily: "'Roboto', sans-serif",
     margin: 0,
     padding: 0,
     boxSizing: 'border-box',
