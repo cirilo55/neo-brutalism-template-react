@@ -2,6 +2,7 @@ import React from 'react';
 import Table from '@/components/Table';
 import {getJornadas} from '@/api/jornadas';
 import useSWR from 'swr';
+import { useRouter } from 'next/router';
 
 export default function Funcionarios() {
   const columns = [
@@ -13,6 +14,11 @@ export default function Funcionarios() {
     { key: 'saida2', label: 'Saída 2', sortable: false, width: '.75fr' },
   ];
   const { data, error, isLoading } = useSWR('/jornadas', getJornadas);
+  const router = useRouter();
+
+  const handleEdit = (id: string) => {
+    router.push(`/jornadas/${id}`); // Redireciona para a página de edição
+  };
 
 
   return (
@@ -27,7 +33,7 @@ export default function Funcionarios() {
       ) : data.length === 0 ? (
         <div>Nenhum dado encontrado.</div>
       ) : (
-        <Table columns={columns} data={data} />
+        <Table columns={columns} data={data} onRowClick={handleEdit}/>
       )}
 
     </div>

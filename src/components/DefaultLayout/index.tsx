@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { LayoutWrapper, Sidebar, Header, Content, SidebarItem, HeaderTitle, IconBox, StageWrapper } from './styles';
-import { FiClock, FiUsers, FiCalendar, FiAlertCircle, FiLogOut } from 'react-icons/fi';
+import { FiClock, FiUsers, FiCalendar, FiAlertCircle, FiLogOut, FiFileText, FiAlertTriangle } from 'react-icons/fi';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -24,10 +24,7 @@ export default function Layout({ children, title }: LayoutProps) {
   }, [router]);
 
   const handleLogout = () => {
-    // Remove o token dos cookies
     document.cookie = 'authToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
-
-    // Redireciona para a página de login
     router.push('/login');
   };
 
@@ -57,6 +54,20 @@ export default function Layout({ children, title }: LayoutProps) {
           <Link href="/jornadas">
               <FiCalendar />
               <span>Jornadas</span>
+            
+          </Link>
+        </SidebarItem>
+        <SidebarItem className={router.pathname === '/atestados' ? 'active' : ''}>
+          <Link href="/atestados">
+              <FiFileText />
+              <span>Atestados</span>
+            
+          </Link>
+        </SidebarItem>
+        <SidebarItem className={router.pathname === '/advertencias' ? 'active' : ''}>
+          <Link href="/advertencias">
+              <FiAlertTriangle />
+              <span>Advertencias</span>
             
           </Link>
         </SidebarItem>

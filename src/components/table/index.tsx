@@ -11,9 +11,11 @@ interface Column {
 interface TableProps {
   columns: Column[];
   data: Record<string, string | number | boolean | null>[]; // Array of objects with string keys and values of various types
+  onRowClick?: (params: string) => void;
+
 }
 
-export default function Table({ columns, data }: TableProps) {
+export default function Table({ onRowClick, columns, data }: TableProps) {
   const [sortedData, setSortedData] = useState(data);
   const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'asc' | 'desc' } | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -88,8 +90,15 @@ export default function Table({ columns, data }: TableProps) {
       </TableHeader>
       <TableBody>
         <TableSection>
-          {paginatedData.map((item, index) => (
-            <TableRow key={index} style={{ gridTemplateColumns }} >
+        {paginatedData.map((item, index) => (
+            <TableRow
+              key={index}
+              onClick={() => onRowClick && item.usuarioIntegracaoId && onRowClick(item.usuarioIntegracaoId.toString())} // Chama onRowClick com o id da linha
+              style={{
+                gridTemplateColumns,
+                cursor: onRowClick ? 'pointer' : 'default', // Combina os estilos em um único objeto
+              }}
+            >
               {columns.map((column) => (
                 <TableCell key={column.key}>{item[column.key]}</TableCell>
               ))}

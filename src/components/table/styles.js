@@ -62,7 +62,7 @@ export const TableRow = styled('div', {
   // gridTemplateColumns: '4fr 1fr 1fr 1fr 1fr',
   alignItems: 'center',
   borderBottom: '2px solid #e0e0e0',
-  height: "6vh",
+  height: "5.85vh",
   alignItems: 'center',
   '&:last-child': {
     borderBottom: 'none',

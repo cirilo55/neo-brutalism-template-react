@@ -36,6 +36,14 @@ export const StyledButton = styled('button', {
       transform: 'translate(0, 0)',
     },
   },
+  '&:disabled': {
+    cursor: 'not-allowed',
+    opacity: 0.6, // Reduz a opacidade para indicar que está desativado
+    span: {
+      backgroundColor: '#e0e0e0', // Fundo cinza para o estado desativado
+      borderColor: '#a0a0a0', // Bordas cinzas
+    },
+  },
 });
 
 export const ButtonLabel = styled('span', {

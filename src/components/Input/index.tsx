@@ -8,9 +8,12 @@ interface InputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   props?: React.InputHTMLAttributes<HTMLInputElement>;
+  isLoading?: boolean;
+  autoComplete?: string;
+  isDisabled?: boolean;
 }
 
-export default function Input({ label, type = 'text', value, onChange, placeholder, ...props}: InputProps) {
+export default function Input({ label, type = 'text', value, onChange,  autoComplete,placeholder,isLoading=false,isDisabled=false, ...props}: InputProps) {
   return (
     <InputWrapper>
       <InputLabel>{label}</InputLabel>
@@ -19,6 +22,8 @@ export default function Input({ label, type = 'text', value, onChange, placehold
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        disabled={isDisabled || isLoading} // Desativa o input se `isDisabled` ou `isLoading` for true
+        autoComplete={autoComplete} // Passa o autoComplete para o input
         {...props}
       />
     </InputWrapper>

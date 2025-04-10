@@ -149,6 +149,9 @@ const globalStyles = globalCss({
   },
   '.p-2': {
     padding: '1rem',
+  },
+  ".w-25":{
+    width: '25%',
   }
 }); 
 
