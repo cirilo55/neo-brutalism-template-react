@@ -7,7 +7,6 @@ import { useRouter } from 'next/router';
 export default function Funcionarios() {
   const columns = [
     { key: 'funcionarioNome', label: 'Funcionário', sortable: true, width: '2.5fr' },
-    { key: 'diasDaSemana', label: 'Dias da Semana', sortable: false, width: '2.5fr' },
     { key: 'entrada1', label: 'Entrada 1', sortable: false, width: '.75fr' },
     { key: 'saida1', label: 'Saída 1', sortable: false, width: '.75fr' },
     { key: 'entrada2', label: 'Entrada 2', sortable: false, width: '.75fr' },

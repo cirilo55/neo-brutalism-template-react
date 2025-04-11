@@ -95,3 +95,19 @@ export const StageWrapper= styled('div', {
   height: '100vh', // Altura total 
   backgroundColor: '#f8f8ec',
 })
+
+export const BackIcon = styled('button', {
+  background: 'none',
+  border: 'none',
+  cursor: 'pointer',
+  marginRight: '16px',
+  fontSize: '1.5rem',
+  color: '#c585e0',
+  display: 'flex',
+  alignItems: 'center',
+  transition: 'color 0.2s ease',
+
+  '&:hover': {
+    color: '#c585e0',
+  },
+});
