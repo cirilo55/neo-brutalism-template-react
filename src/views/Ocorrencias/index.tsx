@@ -13,7 +13,7 @@ export default function Batidas() {
 
   const columns = [
     { key: 'tipo', label: 'Tipo', sortable: true, width: '.5fr' },
-    { key: 'funcionarioNome', label: 'Funcionário', sortable: true, width: '2.5fr' },
+    { key: 'nome', label: 'Funcionário', sortable: true, width: '2.5fr' },
     { key: 'horarioEsperado', label: 'Horario esperado', sortable: false, width: '1.5fr'  },
     { key: 'horarioBatido', label: 'Horario Batido', sortable: false , width: '1fr'},
     { key: 'atrasoMinutos', label: 'Atraso', sortable: false , width: '.5fr'},
