@@ -67,9 +67,20 @@ export const TableRow = styled('div', {
   '&:last-child': {
     borderBottom: 'none',
   },
-
   '&:hover': {
-    // backgroundColor: '#d596ff', 
+    backgroundColor: '#f5f5f5', // Cor de fundo ao passar o mouse
+    transform: 'scale(1.01)', // Leve aumento no tamanho
+  },
+  variants: {
+    clickable: {
+      true: {
+        cursor: 'pointer', // Cursor de ponteiro se for clicável
+
+      },
+      false: {
+        cursor: 'default', // Cursor padrão se não for clicável
+      },
+    },
   },
 });
 

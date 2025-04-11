@@ -30,6 +30,31 @@ export default function Batidas() {
 
   const { data, error, isLoading } = useSWR(queryParams, getOcorrencias);
 
+  interface Ocorrencia {
+    tipo: string;
+    nome: string;
+    horarioEsperado?: string;
+    horarioBatido?: string;
+    [key: string]: string | number | undefined; // Specify possible types for dynamic fields
+  }
+
+  const processedData = data?.map((item: Ocorrencia) => {
+    if (item.horarioEsperado && item.horarioBatido) {
+      const [expectedHours, expectedMinutes] = item.horarioEsperado.split(':').map(Number);
+      const [actualHours, actualMinutes] = item.horarioBatido.split(':').map(Number);
+
+      const expectedTime = expectedHours * 60 + expectedMinutes;
+      const actualTime = actualHours * 60 + actualMinutes;
+
+      const atrasoMinutos = actualTime > expectedTime ? actualTime - expectedTime : 0;
+
+      return { ...item, atrasoMinutos };
+    }
+
+    // Caso não tenha registro, define atrasoMinutos como "-"
+    return { ...item, atrasoMinutos: '-' };
+  });
+
   return (
     <div className="p-2">
       <FilterWrapper>
@@ -53,7 +78,7 @@ export default function Batidas() {
       ) : data.length === 0 ? (
         <div>Nenhum dado encontrado para a data: {startDate.split('-').reverse().join('/')}</div>
       ) : (
-        <Table columns={columns} data={data} />
+        <Table columns={columns} data={processedData} />
       )}
       </div>
   );
