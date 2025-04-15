@@ -3,8 +3,7 @@ import { createStitches } from '@stitches/react';
 const { styled } = createStitches();
 
 export const Container = styled('div', {
-  display: 'flex',
-  justifyContent: 'center',
+
 });
 
 export const ProfileCard = styled('div', {
@@ -13,6 +12,7 @@ export const ProfileCard = styled('div', {
   borderRadius: '8px',
   width: '600px',
   boxShadow: '4px 4px 0px #000',
+  padding: '1rem',
 
   '.profile-header': {
     display: 'flex',
@@ -65,6 +65,8 @@ export const InfoRow = styled('div', {
   justifyContent: 'space-between',
   padding: '8px 0',
   borderBottom: '1px solid #ddd',
+  alignItems: 'center',
+  fontSize: '14px',
 
   span: {
     fontSize: '14px',
@@ -95,6 +97,37 @@ export const Button = styled('button', {
 
         '&:hover': {
           backgroundColor: '#b06ed0',
+        },
+      },
+    },
+  },
+});
+
+export const OutlinedButton = styled('button', {
+  padding: '10px 20px',
+  fontSize: '14px',
+  fontWeight: 'bold',
+  border: '2px solid #c585e0',
+  borderRadius: '4px',
+  cursor: 'pointer',
+  backgroundColor: '#fff',
+  color: '#c585e0',
+  transition: 'all 0.2s ease-in-out',
+
+  '&:hover': {
+    backgroundColor: '#f0f0f0',
+  },
+
+  variants: {
+    primary: {
+      true: {
+        backgroundColor: '#c585e0',
+        color: '#000',
+
+        '&:hover': {
+          backgroundColor: '#b06ed0',
+          color: '#000',
+
         },
       },
     },

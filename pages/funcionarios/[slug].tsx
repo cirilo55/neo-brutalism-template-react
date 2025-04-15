@@ -1,5 +1,5 @@
 import Layout from '@/components/DefaultLayout';
-import Jornada from '@/views/Jornadas/detail';
+import FuncionarioDetails from '@/views/Funcionarios/detail';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
@@ -8,12 +8,12 @@ export default function JornadasPage() {
   const router = useRouter();
 
   const handleReturn = () => {
-    router.push('/jornadas');
+    router.push('/funcionarios');
   };
 
   return (
-    <Layout title={`Jornadas: ${nome}`} onBack={handleReturn}>
-      <Jornada onSetNome={setNome} />
+    <Layout title={`Funcionário: ${nome}`} onBack={handleReturn}>
+      <FuncionarioDetails onSetNome={setNome}/>
     </Layout>
   );
 }

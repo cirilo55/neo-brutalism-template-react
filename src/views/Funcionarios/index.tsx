@@ -3,21 +3,13 @@ import React, { useState, useEffect } from 'react';
 import Table from '@/components/Table';
 import useSWR from 'swr';
 import { getFuncionarios } from '@/api/funcionarios';
-
-interface Funcionario {
-  [key: string]: string | number | boolean | null | { Descricao: string } | undefined;
-  Nome: string;
-  Cpf: string;
-  Admissao?: string;
-  Demissao?: string;
-  Departamento?: { Descricao: string };
-  Funcao?: { Descricao: string };
-}
+import { useRouter } from 'next/router';
+import { Funcionario } from '@/interfaces/funcionarios'
 
 export default function Funcionarios() {
-  const [showOnlyActive, setShowOnlyActive] = useState(false);
+  // const [showOnlyActive, setShowOnlyActive] = useState(false);
   const [filteredData, setFilteredData] = useState<any[]>([]); // Estado para armazenar os dados filtrados
-
+  const router = useRouter();
   const columns = [
     { key: 'Nome', label: 'Nome', sortable: true, width: '2fr' },
     { key: 'Admissao', label: 'Admissão', sortable: true, width: '1fr' },
@@ -29,14 +21,21 @@ export default function Funcionarios() {
   // Carrega todos os dados de funcionários
   const { data, error, isLoading } = useSWR('/funcionarios', getFuncionarios);
 
+  const handleEdit = (id: string) => {
+    console.log(id)
+    router.push(`/funcionarios/${id}`);
+  };
+
+
   // Atualiza os dados filtrados sempre que `data` ou `showOnlyActive` mudar
   useEffect(() => {
     if (data) {
       const filtered = data
         .filter((funcionario: Funcionario) => {
-          if (showOnlyActive) {
-            return !funcionario.Demissao; 
-          }
+          // if (showOnlyActive) {
+          //   return !funcionario.Demissao; 
+          // }
+          console.log(funcionario)
           return true; 
         })
         .map((funcionario: Funcionario) => ({
@@ -46,15 +45,17 @@ export default function Funcionarios() {
           Demissao: funcionario.Demissao ? new Date(funcionario.Demissao).toLocaleDateString() : '-',
           Departamento: funcionario.Departamento?.Descricao || '-',
           Funcao: funcionario.Funcao?.Descricao || '-',
+          usuarioIntegracaoId: funcionario.Id
+          
         }));
 
       setFilteredData(filtered); // Atualiza o estado com os dados filtrados
     }
-  }, [data, showOnlyActive]); // Dependências: refaz o filtro quando `data` ou `showOnlyActive` mudar
+  }, [data]); // Dependências: refaz o filtro quando `data` ou `showOnlyActive` mudar
   console.log(filteredData)
   return (
     <div className="p-2">
-      <div className="mb-4">
+      {/* <div className="mb-4">
         <label>
           <input
             type="checkbox"
@@ -63,7 +64,7 @@ export default function Funcionarios() {
           />
           Mostrar apenas funcionários ativos
         </label>
-      </div>
+      </div> */}
 
       {isLoading ? (
         <div>Loading...</div>
@@ -75,7 +76,7 @@ export default function Funcionarios() {
       ) : filteredData.length === 0 ? (
         <div>Nenhum dado encontrado.</div>
       ) : (
-        <Table columns={columns} data={filteredData} />
+        <Table columns={columns} data={filteredData} onRowClick={handleEdit} />
       )}
     </div>
   );
