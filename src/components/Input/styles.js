@@ -11,7 +11,7 @@ export const InputWrapper = styled('div', {
 
 export const InputLabel = styled('label', {
   fontSize: '1rem',
-  fontWeight: 'bold',
+fontWeight: 'bold',
   color: '#333',
   marginBottom: '8px',
 });
